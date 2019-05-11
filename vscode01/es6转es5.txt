@@ -13,5 +13,9 @@ traceur calc.js
 traceur --script calc.js --out calc.es5.js
 为了防止有些特性编译不成功，最好加上--experimental选项。
 traceur --script calc.js --out calc.es5.2.js --experimental
-
+关键是calc.es5.2.js没有运行成功：
+行：
+var $__initTailRecursiveFunction = $traceurRuntime.getModule($traceurRuntime.normalizeModuleName("traceur/dist/commonjs/runtime/modules/initTailRecursiveFunction.js", "calc.js")).default;
+报错：
+Uncaught TypeError: Cannot read property 'default' of undefined
 
