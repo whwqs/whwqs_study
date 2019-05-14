@@ -26,4 +26,10 @@ let f2 = function*(){
 let [x0,x1] = f2();
 console.info(x1);
 
+let v = f2();
+
+for(let i=0;i<10;i++){
+    console.info(v.next());
+}
+
 </script>

@@ -1,0 +1,81 @@
+npm install -g es-checker
+C:\Users\Administrator.PC-20150123VQOB>es-checker
+
+ECMAScript 6 Feature Detection (v1.4.1)
+
+Variables
+  ¡Ì let and const
+  ¡Ì TDZ error for too-early access of let or const declarations
+  ¡Ì Redefinition of const declarations not allowed
+  ¡Ì destructuring assignments/declarations for arrays and objects
+  ¡Ì ... operator
+
+Data Types
+  ¡Ì For...of loop
+  ¡Ì Map, Set, WeakMap, WeakSet
+  ¡Ì Symbol
+  ¡Ì Symbols cannot be implicitly coerced
+
+Number
+  ¡Ì Octal (e.g. 0o1 ) and binary (e.g. 0b10 ) literal forms
+  ¡Ì Old octal literal invalid now (e.g. 01 )
+  ¡Ì Static functions added to Math (e.g. Math.hypot(), Math.acosh(), Math.imul(
+) )
+  ¡Ì Static functions added to Number (Number.isNaN(), Number.isInteger() )
+
+String
+  ¡Ì Methods added to String.prototype (String.prototype.includes(), String.prot
+otype.repeat() )
+  ¡Ì Unicode code-point escape form in string literals (e.g. \u{20BB7} )
+  ¡Ì Unicode code-point escape form in identifier names (e.g. var \u{20BB7} = 42
+; )
+  ¡Ì Unicode code-point escape form in regular expressions (e.g. var regexp = /\
+u{20BB7}/u; )
+  ¡Ì y flag for sticky regular expressions (e.g. /b/y )
+  ¡Ì Template String Literals
+
+Function
+  ¡Ì arrow function
+  ¡Ì default function parameter values
+  ¡Ì destructuring for function parameters
+  ¡Ì Inferences for function name property for anonymous functions
+  ¡Á Tail-call optimization for function calls and recursion
+
+Array
+  ¡Ì Methods added to Array.prototype ([].fill(), [].find(), [].findIndex(), [].
+entries(), [].keys(), [].values() )
+  ¡Ì Static functions added to Array (Array.from(), Array.of() )
+  ¡Ì TypedArrays like Uint8Array, ArrayBuffer, Int8Array(), Int32Array(), Float6
+4Array()
+  ¡Ì Some Array methods (e.g. Int8Array.prototype.slice(), Int8Array.prototype.j
+oin(), Int8Array.prototype.forEach() ) added to the TypedArray prototypes
+  ¡Ì Some Array statics (e.g. Uint32Array.from(), Uint32Array.of() ) added to th
+e TypedArray constructors
+
+Object
+  ¡Ì __proto__ in object literal definition sets [[Prototype]] link
+  ¡Ì Static functions added to Object (Object.getOwnPropertySymbols(), Object.as
+sign() )
+  ¡Ì Object Literal Computed Property
+  ¡Ì Object Literal Property Shorthands
+  ¡Ì Proxies
+  ¡Ì Reflect
+
+Generator and Promise
+  ¡Ì Generator function
+  ¡Ì Promises
+
+Class
+  ¡Ì Class
+  ¡Ì super allowed in object methods
+  ¡Ì class ABC extends Array { .. }
+
+Module
+  ¡Á Module export command
+  ¡Á Module import command
+
+
+=========================================
+Passes 39 feature Detections
+Your runtime supports 92% of ECMAScript 6
+=========================================

@@ -1,0 +1,48 @@
+<script>
+    
+    let arr = [1,[2,[3,100]],4];  
+//数组平坦化
+    let f1 = function* (arr){
+        let len = arr.length;
+        for(let i=0;i<len;i++){
+            let item = arr[i];
+            if(typeof item !=="object"){
+                yield item;
+            }
+            else{
+                yield* f1(item);
+            }
+        }
+    }
+
+    for(let item of f1(arr)){
+        console.info(item);
+    }    
+
+    let obj = new Map();  
+    obj.set(Symbol("kk"),123);
+    obj.set(Symbol("kk"),234);
+    obj.set("kk","abc");
+    obj.set("kk","cba")
+
+    console.info(obj.size);
+    
+    
+    let iterator1 = obj[Symbol.iterator]();
+    let next = iterator1.next();    
+    while(!next.done){
+        console.info(next);
+        next = iterator1.next();
+    }
+
+    let o1 = f1(arr);
+    let o2 = f1(arr);
+    let o3 = o2[Symbol.iterator]();
+
+    console.info(o1===o2);
+    console.info(o2===o3);
+
+    var o4 = (yield 1);
+    console.info(o4);
+
+</script>
