@@ -1,0 +1,39 @@
+<script>   
+    let f1 = function* (){        
+        console.info("进入f1")
+        try{            
+            yield;  //第一个yield表达式  
+            //******
+        }
+        catch(ex){
+            console.info(ex+"里面");
+            console.info(ret);
+        }
+    }
+    let o1=f1();   
+    
+    let ret = null;
+    
+    try{
+        ret = o1.throw("不调用next直接调用throw，错误被catch at ");//前面没有调用next直接调用throw，不会进入f1        
+    }
+    catch(ex)
+    {
+        console.info(ex+"外面");
+        console.info(ret);
+    }
+
+    o1=f1();//没有next直接throw，o1机制已经破坏，重新生成一个新对象
+    ret = o1.next();  
+    
+
+    try{
+        ret = o1.throw("调用一次next后调用throw，错误被catch at ");//前面调用一次next后，代码在yield表达式的地方暂停，然后在******的位置收到这个异常，然后在内部catch中处理
+        console.info(ret);
+    }
+    catch(ex)
+    {
+        console.info(ex+"外面");
+    }
+    
+</script>

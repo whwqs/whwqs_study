@@ -1,0 +1,17 @@
+<script>
+    class A{
+
+    }
+
+    A.prototype.f1 = 100;
+
+    class B extends A{
+        constructor(){
+            super();
+            super.f1 = 1;//赋值时super是this
+            console.info(`${super.f1}`);//取值时super是A.prototype
+            console.info(`${this.f1}`);
+        }
+    }
+    new B();
+</script>
