@@ -1,11 +1,12 @@
 <script src="./node_modules/vue/dist/vue.js"></script>
 <div id='app'>
+    aaa
     <c1 :arr1="arr1">default</c1>
+    <div>ddd</div>
 </div>
 <script>
     Vue.component("c1",{
-        render:function(h){
-            console.info(this.arr1)
+        render:function(h){            
             if(this.arr1.length){
                 var i=1;
                 return h("div",this.arr1.map(function(item){                    
@@ -25,4 +26,5 @@
             arr1:[{name:"hello 1"},{name:"hello 2"}]
         }
     })
+    console.dir(app.$slots)
 </script>
