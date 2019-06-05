@@ -5,7 +5,12 @@
 		},
 		{
 			"path": "vue01"
+		},
+		{
+			"path": "vue02"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }
