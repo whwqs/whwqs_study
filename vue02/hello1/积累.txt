@@ -1,0 +1,2 @@
+npx http-server
+<script src="./h1.js" type="module"></script>
