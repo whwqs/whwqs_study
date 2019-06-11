@@ -8,3 +8,10 @@ let myClass =  class myClass {
 }
 export { myName, myAge, myfn, myClass }
 
+
+var defaultV=1000;
+//export default 456
+export default defaultV
+
+
+

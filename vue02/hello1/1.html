@@ -1,2 +1,9 @@
 <script src="./h1.js" type="module"></script>
 <script src="./h2.js" type="module"></script>
+<script type="module">
+    import * as obj from './h1.js';
+    alert(obj.myName)
+    
+    import defaultV from './h1.js';
+    alert(defaultV)
+</script>
