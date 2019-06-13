@@ -1,30 +1,12 @@
 import Vue from 'vue'
 import app from './app.vue'
-import v1 from './views/v1.vue'
-import Router from 'vue-router'
-
-Vue.use(Router)
-
-var router = new Router({
-    routes:[
-        {
-            path:'/'
-            ,name:'v1'
-            ,component:v1
-        }
-        ,{
-            path:'/v2'
-            ,name:'v2'
-            ,component:()=>import('./views/v2.vue')
-        }
-    ]
-})
+import router from '@/router'
 
 console.info("vue",app)
 
 console.info("render",app.render)
 
-new Vue({
+var root = new Vue({
     el:"#app",
     router,
     render:h=>{ 
@@ -33,3 +15,6 @@ new Vue({
         return vn
     }
 });
+
+
+console.info("root",root)
