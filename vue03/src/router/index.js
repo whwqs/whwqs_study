@@ -15,6 +15,10 @@ export default new Router({
             path:'/v2'
             ,name:'v2'
             ,component:()=>import('@/views/v2.vue')
+        },{
+            path:'/t1'
+            ,name:'t1'
+            ,component:
         }
     ]
 })

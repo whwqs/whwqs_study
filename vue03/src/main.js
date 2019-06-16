@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import app from './app.vue'
+import app2 from '@/app2.vue'
 import router from '@/router'
 
 console.info("vue",app)
@@ -10,7 +11,7 @@ var root = new Vue({
     el:"#app",
     router,
     render:h=>{ 
-        var vn = h(app)
+        var vn = h(app2)
         console.info("VNode",vn)
         return vn
     }
