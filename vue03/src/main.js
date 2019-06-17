@@ -11,7 +11,7 @@ var root = new Vue({
     el:"#app",
     router,
     render:h=>{ 
-        var vn = h(app2)
+        var vn = h(app)
         console.info("VNode",vn)
         return vn
     }
