@@ -1,0 +1,17 @@
+<script src="./node_modules/vue/dist/vue.js"></script>
+<div id="app"></div>
+<template id="t1" style="display: none;">
+    <div>
+        <input v-model="a1" />
+    </div>
+</template>
+<script>
+    obj = new Vue({
+        
+        data:{
+            a1:"hello"
+        }
+       ,template:"#t1"
+    }).$mount("#app")
+</script>
+<button onclick="alert(obj.a1)">test a1</button>

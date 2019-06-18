@@ -2,7 +2,7 @@
   "name": "vue03",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "hello.html",
   "dependencies": {
     "@vue/cli": "^3.8.2",
     "@vue/cli-service": "^3.8.0",
