@@ -1,0 +1,36 @@
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<template id="t1">
+    <div>
+        t1
+        <div>
+                <router-view />
+        </div>
+    </div>
+</template>
+<template id="t2">
+    <div>
+        sub
+        <div>
+                <router-view />
+        </div>
+    </div>
+</template>
+<script>
+    Vue.use(VueRouter)
+    const c1 = Vue.component("c1",{
+        template:"#t1"
+    })
+    const c2 = Vue.component("c2",{
+        template:"#t2"
+    })
+    const route = new VueRouter({
+        routes:[
+            {
+                path:'/',
+                component:c1
+            }
+        ]
+
+    })
+</script>
