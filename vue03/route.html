@@ -1,0 +1,67 @@
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<div id="app"></div>
+<script>
+    Vue.use(VueRouter)
+    const c1 = {
+        template:
+        `
+            <div>
+                <h1>学生：{{$route.params.name}}</h1>
+                <router-view></router-view>
+            </div>
+        `
+    }
+    const c2 = {
+        data(){
+            var name = this.$route.params.name;
+            return {
+                sex:name=="tom"?"男":"女"
+            }
+        },
+        methods:{
+            f1(){
+                var name = this.$route.params.name;
+                return name=="tom"?"男":"女"
+            }
+        },
+        template:
+        `
+            <div>
+                <h2>学生：{{$route.params.name}} 的基本信息：</h2>
+                <h3>性别：{{f1()}}</h3>
+            </div>
+        `
+    }
+
+    const route = new VueRouter({
+        routes:[
+            {
+                name:"r1",
+                path:"/r1/:name",
+                component:c1,
+                children:[
+                    {
+                        path:"basic",
+                        component:c2
+                    },{
+                        path:"address",
+                        component:{
+                            template:`
+                                <div>
+                                    <h2>学生：{{$route.params.name}} 地址：xxxxxx</h2>
+                                    </div>
+                            `
+                        }
+                    }
+                                ]
+            }
+        ]
+    })
+
+    new Vue({
+        router:route,
+        template:"<div>开始：<router-view></router-view>结束</div>"
+    }).$mount("#app")
+
+</script>
