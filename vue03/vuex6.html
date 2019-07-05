@@ -1,0 +1,101 @@
+<div id="app"></div>
+<template id="t1">
+    <div> 
+        <button v-on:click="add({student:{ name: 'tom1', age: 10, sex: '男' }})">添加</button>    
+        <button v-on:click="add2({ name: 'tom5', age: 10, sex: '女' })">添加2</button>     
+        <button v-on:click="frompysrv({ name: 'tom5', age: 10, sex: '女' })">frompysrv</button>     
+        <button v-on:click="del({name:'tom1'})">删除</button> 
+        <table>
+            <tr v-for="s in 所有学生">
+                <td>{{s.name}}</td>
+                <td>{{s.age}}</td>
+                <td>{{s.sex}}</td>
+            </tr>
+        </table>
+    </div>
+</template>
+<script src="./node_modules/axios/dist/axios.js"></script>
+
+<script type="module">
+    import Vue from "./node_modules/vue/dist/vue.esm.browser.js"
+    import Vuex from "./node_modules/vuex/dist/vuex.esm.browser.js"
+    import { mapState,mapMutations ,mapActions  } from "./node_modules/vuex/dist/vuex.esm.browser.js"
+    import {axios} from ""
+    
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            studens: [
+                { name: "tom1", age: 10, sex: "男" },
+                { name: "tom2", age: 20, sex: "女" },
+                { name: "tom3", age: 12, sex: "男" },
+                { name: "tom4", age: 10, sex: "女" },
+
+                { name: "tom5", age: 15, sex: "男" },
+                { name: "tom5", age: 15, sex: "女" },
+
+                { name: "tom6", age: 25, sex: "女" },
+                { name: "tom7", age: 6, sex: "男" },
+                { name: "tom8", age: 29, sex: "女" },
+                { name: "tom9", age: 8, sex: "男" },
+                { name: "tom10", age: 1, sex: "女" },
+                { name: "tom11", age: 9, sex: "男" },
+                { name: "tom12", age: 3, sex: "男" },
+            ]
+        }, 
+        mutations: {
+            add(state, payload) {
+                state.studens= [...state.studens,payload.student]
+            },
+            del(state, payload) {
+                
+                let tmp = state.studens.filter(s => s.name != payload.name)
+               
+                state.studens = [...tmp]
+            }
+        },
+        actions:{
+            add({commit},payload){
+                commit("add",payload)
+            },
+            del({commit},payload){
+                commit("del",payload)
+            },
+            async frompysrv({commit},student){
+                await axios.get("http://localhost:8000/api/create/student?name="+student.name+"&age="+student.age+"&sex="+student.sex)
+                .then(function(res){
+                    alert(res)
+                })
+                .catch(function(err){})
+                .then(function(){})
+            }
+        }
+    })
+    new Vue({
+        store,
+        el: "#app",
+        template: "#t1",
+        computed: {
+            ...mapState({
+                所有学生: state => state.studens
+            }), 
+            
+        },
+        methods:{
+            ...mapActions(["add","del","frompysrv"]),
+            add2(student){
+                let r = this.$store.dispatch({
+                    type:"add",
+                    student
+                }).then((result) => {
+                    console.info(result)
+                }).catch((err) => {
+                    
+                });
+                console.log(r)//promise
+                
+            }     
+        }
+
+    })
+</script>
