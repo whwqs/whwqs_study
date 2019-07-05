@@ -1,0 +1,82 @@
+<div id="app"></div>
+<template id="t1">
+    <div>   
+        <button v-on:click="add">添加</button> 
+        <button v-on:click="add2({ name: 'tom1', age: 10, sex: '男' })">添加2</button>      
+        <button v-on:click="del">删除</button> 
+        <table>
+            <tr v-for="s in 所有学生">
+                <td>{{s.name}}</td>
+                <td>{{s.age}}</td>
+                <td>{{s.sex}}</td>
+            </tr>
+        </table>
+    </div>
+</template>
+<script type="module">
+    import Vue from "./node_modules/vue/dist/vue.esm.browser.js"
+    import Vuex from "./node_modules/vuex/dist/vuex.esm.browser.js"
+    import { mapState,mapMutations  } from "./node_modules/vuex/dist/vuex.esm.browser.js"
+    
+    const 常量_添加 = "添加"
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            studens: [
+                { name: "tom1", age: 10, sex: "男" },
+                { name: "tom2", age: 20, sex: "女" },
+                { name: "tom3", age: 12, sex: "男" },
+                { name: "tom4", age: 10, sex: "女" },
+
+                { name: "tom5", age: 15, sex: "男" },
+                { name: "tom5", age: 15, sex: "女" },
+
+                { name: "tom6", age: 25, sex: "女" },
+                { name: "tom7", age: 6, sex: "男" },
+                { name: "tom8", age: 29, sex: "女" },
+                { name: "tom9", age: 8, sex: "男" },
+                { name: "tom10", age: 1, sex: "女" },
+                { name: "tom11", age: 9, sex: "男" },
+                { name: "tom12", age: 3, sex: "男" },
+            ]
+        }, getters: {
+
+            学生列表过滤函数: state => func => state.studens.filter(s => func(s))
+        },
+        mutations: {
+            [常量_添加](state, student) {
+                state.studens= [...state.studens,student]
+            },
+            删除(state, payload) {
+                
+                let tmp = state.studens.filter(s => s.name != payload.name)
+               
+                state.studens = [...tmp]
+            }
+        }
+    })
+    new Vue({
+        store,
+        el: "#app",
+        template: "#t1",
+
+        computed: {
+            ...mapState({
+                所有学生: state => state.studens
+            }), 
+                 
+        },
+        methods:{
+            ...mapMutations([常量_添加,"删除"]),
+            ...mapMutations({add2:常量_添加})     ,
+            add(){
+                let r = this.add2({ name: "tom5", age: 15, sex: "男" })
+                console.log(r)//undefined
+            },
+            del(){
+                this.$store.commit({type:"删除",name:"tom5"})
+            }
+        }
+
+    })
+</script>

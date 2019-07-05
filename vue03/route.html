@@ -45,12 +45,13 @@
                         path:"basic",
                         component:c2
                     },{
-                        path:"address",
+                        path:"address/:age",
                         component:{
                             template:`
                                 <div>
                                     <h2>学生：{{$route.params.name}} 地址：xxxxxx</h2>
-                                    </div>
+                                    <h3 v-if="$route.params.age">年龄：{{$route.params.age}}</h3>
+                                </div>
                             `
                         }
                     }
