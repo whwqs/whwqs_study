@@ -19,8 +19,7 @@
 <script type="module">
     import Vue from "./node_modules/vue/dist/vue.esm.browser.js"
     import Vuex from "./node_modules/vuex/dist/vuex.esm.browser.js"
-    import { mapState,mapMutations ,mapActions  } from "./node_modules/vuex/dist/vuex.esm.browser.js"
-    import {axios} from ""
+    import { mapState,mapMutations ,mapActions  } from "./node_modules/vuex/dist/vuex.esm.browser.js"    
     
     Vue.use(Vuex)
     const store = new Vuex.Store({
@@ -64,7 +63,7 @@
             async frompysrv({commit},student){
                 await axios.get("http://localhost:8000/api/create/student?name="+student.name+"&age="+student.age+"&sex="+student.sex)
                 .then(function(res){
-                    alert(res)
+                    commit({type:"add",student:res.data})
                 })
                 .catch(function(err){})
                 .then(function(){})
