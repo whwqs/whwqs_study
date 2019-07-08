@@ -1,0 +1,81 @@
+<div id="app"></div>
+<template id="t1">
+    <div> 
+       <p>{{$store.state.m1.v1}}</p>
+       <p>{{$store.state.m2.v1}}</p>
+       <p>{{$store.getters.g3}}</p>
+       <p>{{$store.getters["g3"]}}</p>
+       <p>{{$store.getters["m2/g1"]}}</p>
+       <button v-on:click="$store.dispatch('f1',{a:1000})">测试mutation</button>
+       <button v-on:click="$store.dispatch('m2/f1',{a:3200})">测试mutation</button>
+       <button v-on:click="$store.dispatch('f2',{a:4500})">测试mutation</button>
+    </div>
+</template>
+
+<script type="module">
+    import Vue from "./node_modules/vue/dist/vue.esm.browser.js"
+    import Vuex from "./node_modules/vuex/dist/vuex.esm.browser.js"    
+    
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            v1:"v1",
+            v2:"v2"
+        }, 
+        getters:{
+            g1(state,getters){
+                return state.v1
+            },
+            g2(state,getters){
+                return state.v2
+            }
+        },
+        actions: {
+            f1(context,payload){
+                console.info(payload)
+            }
+        },        
+        modules:{
+            m1:{
+                state:{
+                    v1:"m1_v1",
+                    v2:"m1_v2"
+                },
+                getters:{
+                    g3(state,getters,rootState,rootGetters){
+                        return "m1_g3"
+                    }
+                }
+            },
+            m2:{
+                namespaced:true,
+                state:{
+                    v1:"m2_v1",
+                    v2:"m2_v2"
+                },
+                getters:{
+                    g1(state,getters,rootState,rootGetters){
+                        return rootState.v1 + " "+rootGetters.g2+" "+state.v1
+                    }
+                },
+                actions:{
+                    f1({commit,dispatch,getters,rootGetters,state,rootState},payload){
+                        console.info(rootState)
+                        dispatch("f1",payload,{root:true})
+                    },
+                    f2:{
+                        root:true,
+                        handler({commit,dispatch,getters,rootGetters,state,rootState},payload){
+                            console.info(payload)
+                        }
+                    }
+                }
+            }
+        }
+    })
+    new Vue({
+        store,
+        el: "#app",
+        template: "#t1",
+    })
+</script>
