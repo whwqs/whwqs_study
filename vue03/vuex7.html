@@ -1,0 +1,32 @@
+<div id="app"></div>
+<template id="t1">
+    <div>
+        <p>{{$store.getters.get2}}</p>
+    </div>
+</template>
+<script type="module">
+    import Vue from "./node_modules/vue/dist/vue.esm.browser.js"
+    import Vuex from "./node_modules/vuex/dist/vuex.esm.browser.js"
+    import vuexm1 from "./vuex7_1.js"
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state:{
+            count:0
+        },
+        getters:{
+            get1(){
+                console.info(arguments)
+                return "rootget1"
+            }
+        },
+        modules:{
+            v1:vuexm1
+        }
+    })
+    new Vue({
+        el:"#app",
+        store,
+        template:"#t1"
+    })
+
+</script>
